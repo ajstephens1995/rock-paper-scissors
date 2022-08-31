@@ -13,6 +13,7 @@ function fairnessTest(num) {
   let rockCount = 0
   let paperCount = 0
   let scissorCount = 0
+  const showFairnessTestResults = document.querySelector("p.fairnessTestOutcome")
   for (let i = 0; i < num; i++) {
     let testRun = getComputerSelection()
     if (testRun === "rock") {
@@ -24,6 +25,7 @@ function fairnessTest(num) {
   console.log("rock " + rockCount);
   console.log("paper " + paperCount);
   console.log("scissors " + scissorCount);
+  showFairnessTestResults.innerHTML = `rock: ${rockCount} | paper: ${paperCount} | scissors: ${scissorCount}`;
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -103,6 +105,10 @@ function startGame() {
   bestOf(numOfGames)
 }
 
-const startButton = document.querySelector("button.startGame")
+const startButton = document.querySelector(".startGame");
+const startFairnessTest = document.querySelector(".startFairnessTest");
 
-startButton.addEventListener("click", startGame)
+startButton.addEventListener("click", startGame);
+startFairnessTest.addEventListener("click", function() {
+  fairnessTest(100);
+})
