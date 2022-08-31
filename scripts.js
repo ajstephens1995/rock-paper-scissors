@@ -9,11 +9,11 @@ function getComputerSelection() {
   } else return "scissors"
 }
 
-function fairnessTest() {
+function fairnessTest(num) {
   let rockCount = 0
   let paperCount = 0
   let scissorCount = 0
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < num; i++) {
     let testRun = getComputerSelection()
     if (testRun === "rock") {
       rockCount++;
@@ -102,3 +102,7 @@ function startGame() {
   console.log("Playing best of " + numOfGames)
   bestOf(numOfGames)
 }
+
+const startButton = document.querySelector("button.startGame")
+
+startButton.addEventListener("click", startGame)
