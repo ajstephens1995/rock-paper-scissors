@@ -7,10 +7,13 @@
   <title>Rock Paper Scissors</title>
   <link rel="stylesheet" href="styles.css">
   <h1>Rock Paper Scissors</h1>
+  <h2 id="winOrLose"></h2>
   <div class="scoreboard">
-    <h2>Your Score: 0</h2>
-    <h2>Computer Score: 0</h2>
-    <h2>Ties: 0</h2>
+    <h2 id="playerScore">Your Score: 0</h2>
+    <h2 id="computerScore">Computer Score: 0</h2>
+    <h2 id="ties">Ties: 0</h2>
+    <label for="bestOf">Play to the best of...(1-50)</label>
+    <input type="number" id="bestOf" name="bestOf" min="1" max="50" value="3">
     <button type="button" class="startGame">Start</button>
     <button type="button" class="startFairnessTest">Run a fairness test</button>
     <p>(Simulate 100 computer choices)</p>

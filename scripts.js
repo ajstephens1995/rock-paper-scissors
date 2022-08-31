@@ -1,4 +1,12 @@
 
+const startButton = document.querySelector(".startGame");
+const startFairnessTest = document.querySelector(".startFairnessTest");
+let bestOfInput = document.getElementById("bestOf").value
+
+startButton.addEventListener("click", startGame);
+startFairnessTest.addEventListener("click", function() {
+  fairnessTest(100);
+})
 
 function getComputerSelection() {
   let a = Math.random()
@@ -74,9 +82,15 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function bestOf(numOfGames) {
+  
   let playerScore = 0;
   let computerScore = 0;
   let ties = 0;
+  const showPlayerScore = document.getElementById("playerScore")
+  const showComputerScore = document.getElementById("computerScore")
+  const showTies = document.getElementById("ties")
+  const showWinOrLose = document.getElementById("winOrLose")
+  
   for (let i = 0; i < numOfGames;) {
     let playerSelection = prompt("Choose rock, paper, or scissors.")
     let computerSelection = getComputerSelection()
@@ -94,21 +108,28 @@ function bestOf(numOfGames) {
       ties++
     }
   }
+  showPlayerScore.innerHTML = `Player Score: ${playerScore}`
+  showComputerScore.innerHTML = `Computer Score: ${computerScore}`
+  showTies.innerHTML = `Ties: ${ties}`
   console.log("player wins: " + playerScore);
   console.log("computer wins: " + computerScore);
   console.log("ties: " + ties);
+  showWinOrLose.innerHTML = winLoseTie(playerScore, computerScore)
 }
 
 function startGame() {
-  let numOfGames = prompt("Play best of ___")
-  console.log("Playing best of " + numOfGames)
-  bestOf(numOfGames)
+  let bestOfInput = document.getElementById("bestOf").value
+  /*let numOfGames = prompt("Play best of ___")*/
+  if (bestOfInput <= 50 && bestOfInput >= 1) {
+    console.log("Playing best of " + bestOfInput)
+    bestOf(bestOfInput)
+  } else console.log("This is not a valid input")
 }
 
-const startButton = document.querySelector(".startGame");
-const startFairnessTest = document.querySelector(".startFairnessTest");
-
-startButton.addEventListener("click", startGame);
-startFairnessTest.addEventListener("click", function() {
-  fairnessTest(100);
-})
+function winLoseTie(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    return "You win!"
+  } else if (computerScore > playerScore) {
+    return "You lose... :("
+  } else return "You tied."
+}
